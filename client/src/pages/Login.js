@@ -1,8 +1,25 @@
 import React from 'react'
-import {Form , Input , Button} from 'antd'
+import {Form , Input , Button , message} from 'antd'
 import {Link} from 'react-router-dom'
+import { LoginUser } from '../apicalls/users'
 
 function Login() {
+
+ const submitForm = async (value)=>{
+    try {
+        const response = await LoginUser(value)
+        if(response.success){
+          message.success(response.message)
+
+          window.location.href = '/'
+        }else{
+          message.error(response.message)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+ }
+
   return (
      <>
       <header className="App-header">
@@ -11,7 +28,7 @@ function Login() {
             <h1>Welcome back to BookMyShow</h1>
           </section>
           <section className="right-section">
-            <Form layout="vertical">
+            <Form layout="vertical" onFinish={submitForm}>
               <Form.Item
                 label="Email"
                 name="email"

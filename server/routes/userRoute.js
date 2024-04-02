@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
 
     if (userExists) {
       res.send({
-        success: true,
+        success:false,
         message: "user already Exists",
       });
     }
