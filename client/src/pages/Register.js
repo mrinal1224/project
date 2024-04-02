@@ -9,8 +9,8 @@ function Register() {
 
   const submitForm= async (value)=>{
     try {
-       const res =  await RegisterUser(value)
-       console.log(res)
+       const response =  await RegisterUser(value)
+       console.log(response)
     } catch (error) {
       console.log(error)
     }
