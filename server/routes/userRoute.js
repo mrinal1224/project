@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/userModel");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcrypt");
 
 // Route for Register
 
@@ -16,19 +16,16 @@ router.post("/register", async (req, res) => {
       });
     }
 
-
     // Hash The password
 
+    const salt = await bcrypt.genSalt(10);
 
-    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    req.body.password = hashedPassword;
 
-    const hashedPassword = await bcrypt.hash(req.body.password , salt)
-    req.body.password = hashedPassword
-
-    console.log(salt)
+    console.log(salt);
 
     const newUser = await User(req.body);
-
 
     await newUser.save(); // saves the data in the database
 
@@ -41,9 +38,36 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
 
-router.post('/login' , async(req , res)=>{
-   // Next Class
-})
+    console.log(user);
+
+    if (!user) {
+      return res.send({
+        success: false,
+        message: "You are not registered Please Register First",
+      });
+    }
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      return res.send({
+        success: false,
+        message: "Sorry, invalid password entered!",
+      });
+    }
+
+    res.send({
+      success: true,
+      message: "User Logged in",
+    });
+  } catch (error) {
+    console.log(err);
+  }
+});
 
 module.exports = router;
