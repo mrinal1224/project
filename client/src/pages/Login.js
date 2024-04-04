@@ -20,7 +20,7 @@ function Login() {
           localStorage.setItem('token' , response.token)
 
 
-          dispatch(setUser(response.user))
+  
 
           
 
