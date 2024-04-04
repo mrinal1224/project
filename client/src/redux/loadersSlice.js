@@ -6,7 +6,7 @@ const loaderSlice = createSlice({
 
 
   initialState : {
-     loading : true
+     loading : false
   },
 
   reducers:{

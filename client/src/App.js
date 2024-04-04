@@ -8,11 +8,20 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const {loading} = useSelector((state)=>state.loader)
+  const {user} = useSelector((state)=> state.user)
 
-  
+
   console.log(loading)
+  console.log(user)
   return (
     <div>
+        {loading &&(
+            <div className="loader-container">
+          {" "}
+          <div className="loader"> </div>{" "}
+        </div>
+        )}
+
         <BrowserRouter>
         
          <Routes>
@@ -28,6 +37,7 @@ function App() {
         
         </BrowserRouter>
     </div>
+    
   );
 }
 

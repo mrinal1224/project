@@ -2,10 +2,15 @@ import React from 'react'
 import {Form , Input , Button , message} from 'antd'
 import {Link} from 'react-router-dom'
 import { LoginUser } from '../apicalls/users'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../redux/userSilce'
+
 
 function Login() {
+  const dispatch = useDispatch()
 
  const submitForm = async (value)=>{
+
     try {
         const response = await LoginUser(value)
     
@@ -15,7 +20,12 @@ function Login() {
           localStorage.setItem('token' , response.token)
 
 
-          window.location.href = '/'
+          dispatch(setUser(response.user))
+
+          
+
+
+          // window.location.href = '/'
         }else{
           message.error(response.message)
         }
