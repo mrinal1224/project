@@ -1,41 +1,33 @@
-import React from 'react'
-import {Form , Input , Button , message} from 'antd'
-import {Link} from 'react-router-dom'
-import { LoginUser } from '../apicalls/users'
-import { useDispatch } from 'react-redux'
-import { setUser } from '../redux/userSilce'
-
+import React from "react";
+import { Form, Input, Button, message } from "antd";
+import { Link } from "react-router-dom";
+import { LoginUser } from "../apicalls/users";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/userSilce";
 
 function Login() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
- const submitForm = async (value)=>{
-
+  const submitForm = async (value) => {
     try {
-        const response = await LoginUser(value)
-    
-        if(response.success){
-          message.success(response.message)
+      const response = await LoginUser(value);
 
-          localStorage.setItem('token' , response.token)
+      if (response.success) {
+        message.success(response.message);
 
+        localStorage.setItem("token", response.token);
 
-  
-
-          
-
-
-          // window.location.href = '/'
-        }else{
-          message.error(response.message)
-        }
+        window.location.href = "/";
+      } else {
+        message.error(response.message);
+      }
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
- }
+  };
 
   return (
-     <>
+    <>
       <header className="App-header">
         <main className="main-area mw-500 text-center px-3">
           <section className="left-section">
@@ -88,8 +80,8 @@ function Login() {
           </section>
         </main>
       </header>
-     </>
-  )
+    </>
+  );
 }
 
-export default Login
+export default Login;
