@@ -4,7 +4,7 @@ import { hideLoading, showLoading } from "../redux/loadersSlice";
 import { getCurrentUser } from "../apicalls/users";
 import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../redux/userSilce";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, message } from "antd";
 import { Header } from "antd/es/layout/layout";
 import {
   HomeOutlined,
@@ -33,7 +33,15 @@ function ProtectedRoute({ children }) {
 
       children: [
         {
-          label: "Profile",
+          label: (
+            <span
+              onClick={() => {
+                user.isAdmin ? navigate("/admin") : navigate("/profile");
+              }}
+            >
+              My Profile
+            </span>
+          ),
           icon: <ProfileOutlined />,
         },
         {
@@ -52,10 +60,17 @@ function ProtectedRoute({ children }) {
     try {
       dispatch(showLoading);
       const response = await getCurrentUser();
-      dispatch(setUser(response.data));
-      dispatch(hideLoading);
+      if (response.success) {
+        dispatch(setUser(response.data));
+      } else {
+        dispatch(setUser(null));
+        message.error(response.message);
+        dispatch(hideLoading);
+      }
     } catch (error) {
-      console.log(error);
+      dispatch(hideLoading);
+      dispatch(setUser(null));
+      message.error(error.message);
     }
   };
 

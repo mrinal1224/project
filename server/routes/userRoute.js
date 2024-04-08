@@ -82,7 +82,7 @@ router.get('/get-current-user', authMiddleware , async (req , res)=>{
     console.log(user)
 
     res.send({
-       sucess : true,
+       success : true,
        message :'User Authorzied for Protected Route',
        data : user,
     })
