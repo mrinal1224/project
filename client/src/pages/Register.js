@@ -1,11 +1,11 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { Form, Input, Button, message } from "antd";
-import {Link, resolvePath} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { RegisterUser } from "../apicalls/users";
 
-function Register() {
 
+function Register() {
+  const navigate = useNavigate()
 
   const submitForm= async (value)=>{
     try {
@@ -19,6 +19,13 @@ function Register() {
       console.log(error)
     }
   }
+
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  } , [])
 
 
   return (
