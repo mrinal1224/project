@@ -5,8 +5,6 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
 const authMiddleware = require('../middlewares/authMiddleware');
 
-
-
 // Route for Register
 
 router.post("/register", async (req, res) => {
@@ -80,7 +78,7 @@ router.post("/login", async (req, res) => {
 
 
 router.get('/get-current-user', authMiddleware , async (req , res)=>{
-    
+    // Next
 })
 
 
