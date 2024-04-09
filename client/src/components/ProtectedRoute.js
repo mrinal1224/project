@@ -62,6 +62,12 @@ function ProtectedRoute({ children }) {
       const response = await getCurrentUser();
       if (response.success) {
         dispatch(setUser(response.data));
+
+        if(!response.data.isAdmin){
+            message.error('You are not authorized for this page')
+            navigate('/')
+        }
+
       } else {
         dispatch(setUser(null));
         message.error(response.message);
@@ -80,7 +86,7 @@ function ProtectedRoute({ children }) {
     } else {
       navigate("/login");
     }
-  });
+  } , []);
 
   return (
     user && (
