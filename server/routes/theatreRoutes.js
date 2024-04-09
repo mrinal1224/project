@@ -4,7 +4,7 @@ const Theatre = require('../models/theatreModel')
 
 // Add a Theatre
 
-router.post('/add-theatre' , async(req , res)=>{
+router.post('/add-theatre' ,  async(req , res)=>{
     try {
 
        const newTheatre =  new Theatre(req.body)
@@ -53,6 +53,9 @@ router.delete('/delete-theatre', async (req, res) => {
         })
     }
 });
+
+
+// 
 
 
 
