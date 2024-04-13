@@ -110,7 +110,7 @@ function TheatresTable() {
   return (
     <>
     {<Table dataSource={theatres} columns={columns} />}
-  </>
+    </>
   )
 }
 
