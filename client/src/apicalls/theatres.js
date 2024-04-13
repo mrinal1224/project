@@ -26,7 +26,7 @@ export const updateTheatre = async (payload) => {
 
 export const deleteTheatre = async (payload) => {
   try {
-    const response = await axiosInstance.delete(
+    const response = await axiosInstance.put(
       "/api/theatres/delete-theatre",
       payload
     );

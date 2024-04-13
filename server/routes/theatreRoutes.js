@@ -39,7 +39,7 @@ router.put('/update-theatre',  async (req, res) => {
     }
 })
 
-router.delete('/delete-theatre', async (req, res) => {
+router.put('/delete-theatre', async (req, res) => {
     try{
         await Theatre.findByIdAndDelete(req.body.theatreId);
         res.send({
