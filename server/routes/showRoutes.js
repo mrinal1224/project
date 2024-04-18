@@ -57,37 +57,37 @@ router.put("/update-show", async (req, res) => {
 
 // Get shows by Movie
 
-// router.post("/get-all-theatres-by-movie", async (req, res) => {
-//   try {
-//     const { movie, date } = req.body;
+router.post("/get-all-theatres-by-movie", async (req, res) => {
+  try {
+    const { movie, date } = req.body;
 
-//     const shows = await Show.find({movie , date}).populate("theatre");
+    const shows = await Show.find({movie , date}).populate("theatre");
 
 
-//     let uniqueTheatres = []
+    let uniqueTheatres = []
 
-//     shows.forEach(show => {
-//         let isTheatre = uniqueTheatres.find(theatre => theatre._id === show.theatre._id);
-//         if(!isTheatre){
-//             let showsOfThisTheatre = shows.filter(showObj => showObj.theatre._id == show.theatre._id);
-//             uniqueTheatres.push({...show.theatre._doc, shows: showsOfThisTheatre});
-//         }
-//     });
+    shows.forEach(show => {
+        let isTheatre = uniqueTheatres.find(theatre => theatre._id === show.theatre._id);
+        if(!isTheatre){
+            let showsOfThisTheatre = shows.filter(showObj => showObj.theatre._id == show.theatre._id);
+            uniqueTheatres.push({...show.theatre._doc, shows: showsOfThisTheatre});
+        }
+    });
 
-//     res.send({
-//       success: true,
-//       message: "All theatres fetched!",
-//       data: uniqueTheatres,
-//     });
-//   } catch (error) {
-//     res.send({
-//       success: false,
-//       message: err.message,
-//     });
-//   }
+    res.send({
+      success: true,
+      message: "All theatres fetched!",
+      data: uniqueTheatres,
+    });
+  } catch (error) {
+    res.send({
+      success: false,
+      message: err.message,
+    });
+  }
 
-//   // let uniqueTheatres = []
-// });
+  // let uniqueTheatres = []
+});
 
 
 
