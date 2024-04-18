@@ -18,6 +18,7 @@ const MovieFormModal = ({isModalOpen, setIsModalOpen, formType, selectedMovie, s
   }
 
   const onFinish = async (values)  => {
+    console.log(values)
     try{
       dispatch(showLoading());
       let response = null;

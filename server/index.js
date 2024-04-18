@@ -10,6 +10,7 @@ const PORT = 5003;
 const userRoutes = require('./routes/userRoute')
 const theatreRoutes = require('./routes/theatreRoutes')
 const movieRoutes = require('./routes/movieRoutes')
+const showRoutes = require('./routes/showRoutes')
 
 mongoose
   .connect("mongodb+srv://mrinalbhattacharya:f3nBnwCYX9Sd9un1@cluster0.t4enktq.mongodb.net/BMS?retryWrites=true&w=majority&appName=Cluster0")
@@ -26,6 +27,8 @@ app.use('/api/users' , userRoutes )
 
 app.use('/api/theatres' , theatreRoutes )
 app.use('/api/movies' , movieRoutes )
+app.use('/api/shows' , showRoutes )
+
 
 
 app.listen(PORT, () => {
