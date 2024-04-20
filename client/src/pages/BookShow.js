@@ -12,7 +12,7 @@ const BookShow = () => {
     const { user } = useSelector((state) => state.user);
     const dispatch = useDispatch();
     const [show, setShow] = useState();
-    const [selectedSeats, setSelectedSeats] = useState([]);
+    const [selectedSeats, setSelectedSeats] = useState([107]);
     const params = useParams();
     const navigate = useNavigate();
     const getData = async () => {
@@ -33,9 +33,9 @@ const BookShow = () => {
     }
 
     const getSeats = () => {
-        let columns = 10;
-        let totalSeats = show.totalSeats;
-        let rows = Math.ceil(totalSeats / columns);
+        let columns = 12;
+        let totalSeats = 200;
+        let rows = Math.ceil(totalSeats / columns); // 20
 
         return(
             <div className="d-flex flex-column align-items-center">
@@ -50,10 +50,10 @@ const BookShow = () => {
                             let seatNumber = seat * columns + column + 1;
                             let seatClass = "seat-btn";
                             if(selectedSeats.includes(seatNumber)){
-                                seatClass += " selected"
+                                seatClass += " selected" // green 
                             }
                             if(show.bookedSeats.includes(seatNumber)){
-                                seatClass += " booked"
+                                seatClass += " booked" // disbale the seats
                             }
                             if(seatNumber <= totalSeats)
                                 return(
