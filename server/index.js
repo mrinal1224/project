@@ -1,5 +1,6 @@
 const express = require("express");
 require('dotenv').config()
+const cors = require("cors");
 
 const mongoose = require("mongoose");
 
@@ -11,6 +12,12 @@ const userRoutes = require('./routes/userRoute')
 const theatreRoutes = require('./routes/theatreRoutes')
 const movieRoutes = require('./routes/movieRoutes')
 const showRoutes = require('./routes/showRoutes')
+const bookingRoutes = require('./routes/bookingRoute')
+
+app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 
 mongoose
   .connect("mongodb+srv://mrinalbhattacharya:f3nBnwCYX9Sd9un1@cluster0.t4enktq.mongodb.net/BMS?retryWrites=true&w=majority&appName=Cluster0")
@@ -28,6 +35,7 @@ app.use('/api/users' , userRoutes )
 app.use('/api/theatres' , theatreRoutes )
 app.use('/api/movies' , movieRoutes )
 app.use('/api/shows' , showRoutes )
+app.use('/api/bookings' , bookingRoutes )
 
 
 
