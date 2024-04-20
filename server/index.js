@@ -14,10 +14,8 @@ const movieRoutes = require('./routes/movieRoutes')
 const showRoutes = require('./routes/showRoutes')
 const bookingRoutes = require('./routes/bookingRoute')
 
-app.use(cors());
-app.use(cors({
-    origin: '*'
-}));
+
+
 
 mongoose
   .connect("mongodb+srv://mrinalbhattacharya:f3nBnwCYX9Sd9un1@cluster0.t4enktq.mongodb.net/BMS?retryWrites=true&w=majority&appName=Cluster0")

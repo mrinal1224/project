@@ -61,12 +61,7 @@ function ProtectedRoute({ children }) {
       dispatch(showLoading);
       const response = await getCurrentUser();
       if (response.success) {
-        dispatch(setUser(response.data));
-
-        if(!response.data.isAdmin){
-            message.error('You are not authorized for this page')
-            navigate('/')
-        }
+        dispatch(setUser(response.data))
 
       } else {
         dispatch(setUser(null));
